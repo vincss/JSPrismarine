@@ -34,7 +34,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/JSPrismarine/JSPrismarine.git"
+        "url": "git+https://github.com/vincss/JSPrismarine.git"
     },
     "xo": {
         "space": 4,

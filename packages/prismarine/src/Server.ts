@@ -111,11 +111,13 @@ export default class Server {
         await this.onEnable();
     }
 
-    public async bootstrap(serverIp = '0.0.0.0', port = 19132): Promise<void> {
-        await this.onEnable();
-        BlockMappings.initMappings();
-        await this.worldManager.onEnable();
-        await this.packetRegistry.onEnable();
+    public async bootstrap(serverIp = '0.0.0.0', port = 19132, connectionCallBack?: () => void): Promise<void> {
+        if (!connectionCallBack) {
+            await this.onEnable();
+            BlockMappings.initMappings();
+            await this.worldManager.onEnable();
+            await this.packetRegistry.onEnable();
+        }
 
         this.raknet = new RakNetListener(this.getConfig().getMaxPlayers(), false);
         this.raknet.start(serverIp, port);
@@ -139,10 +141,16 @@ export default class Server {
                 return;
             }
 
-            const timer = new Timer();
-            this.logger?.debug(`${token} is attempting to connect`, 'Server/listen/openConnection');
-            this.sessionManager.add(token, new ClientConnection(session, this.logger));
-            this.logger?.verbose(`New connection handling took ${timer.stop()} ms`, 'Server/listen/openConnection');
+            if (!connectionCallBack) {
+                const timer = new Timer();
+                this.logger?.debug(`${token} is attempting to connect`, 'Server/listen/openConnection');
+                this.sessionManager.add(token, new ClientConnection(session, this.logger));
+                this.logger?.verbose(`New connection handling took ${timer.stop()} ms`, 'Server/listen/openConnection');
+            }
+            else {
+                session.disconnect('--- Closing time ---');
+                setTimeout(connectionCallBack, 50);
+            }
         });
 
         this.raknet.on('closeConnection', async (inetAddr: InetAddress, reason: string) => {
@@ -264,26 +272,27 @@ export default class Server {
             }
         });
 
-        // TODO: the tick depends on the world
-        // TODO: ticks have to be sync... what if a newer update
-        // takes less to complete than the one started before?
-        // will lead to desyncronized gameplay
-        let tick = 0;
-        const ticker = setIntervalAsync(async () => {
-            if (this.stopping) {
-                void clearIntervalAsync(ticker);
-                return;
-            }
+        if (!connectionCallBack) {
+            // TODO: the tick depends on the world
+            // TODO: ticks have to be sync... what if a newer update
+            // takes less to complete than the one started before?
+            // will lead to desyncronized gameplay
+            let tick = 0;
+            const ticker = setIntervalAsync(async () => {
+                if (this.stopping) {
+                    void clearIntervalAsync(ticker);
+                    return;
+                }
 
-            const event = new TickEvent(tick);
-            await this.eventManager.emit('tick', event);
+                const event = new TickEvent(tick);
+                await this.eventManager.emit('tick', event);
 
-            for (const world of this.worldManager.getWorlds()) {
-                await world.update(event.getTick());
-            }
-            tick += 1;
-        }, 50);
-
+                for (const world of this.worldManager.getWorlds()) {
+                    await world.update(event.getTick());
+                }
+                tick += 1;
+            }, 50);
+        }
         // Log experimental flags
         if (this.config.getExperimentalFlags().length >= 1) {
             this.logger?.debug(`Enabled flags:`, 'Server/listen');
