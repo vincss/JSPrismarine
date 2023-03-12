@@ -21,7 +21,6 @@
         "dev:no-watch": "cross-env NODE_ENV=development JSP_DIR=jsp npm run server:build && npm run start:dev",
         "build": "npm-run-all build:*",
         "build:source": "turbo run build",
-        "build:docs": "typedoc",
         "server:build": "turbo run build --filter=@vincss/server",
         "package": "pkg package.json --out-path ./builds/",
         "watch:test": "jest --passWithNoTests --watch --detectOpenHandles --runInBand",

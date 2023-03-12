@@ -1,5 +1,21 @@
 # @vincss/prismarine
 
+## 0.1.2
+
+### Patch Changes
+
+-   0.1.2
+-   Updated dependencies
+    -   @vincss/nbt@0.1.2
+
+## 0.1.1
+
+### Patch Changes
+
+-   type module
+-   Updated dependencies
+    -   @vincss/nbt@0.1.1
+
 ## 0.1.0
 
 ### Patch Changes

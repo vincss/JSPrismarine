@@ -1,6 +1,6 @@
 {
     "name": "@vincss/nbt",
-    "version": "0.1.0",
+    "version": "0.1.2",
     "description": "Minecraft: Bedrock Edition NBT parser/writer",
     "main": "./dist/NBT.js",
     "types": "./dist/NBT.d.ts",
