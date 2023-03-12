@@ -33,9 +33,8 @@ exitHook(async () => {
 await updater.check();
 
 try {
-    await server.bootstrap(config.getServerIp(), config.getServerPort(), () => {
-        logger.info('---CallBack---');
-        server.shutdown({ withoutSaving: true });
+    await server.bootstrap(config.getServerIp(), config.getServerPort(), async () => {
+        await server.shutdown({ withoutSaving: true });
     });
 } catch (e) {
     logger.error(`Cannot start the server, is it already running on the same port? (${<Error>e})`, 'Prismarine');
