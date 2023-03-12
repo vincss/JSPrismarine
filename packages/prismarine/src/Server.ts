@@ -146,8 +146,7 @@ export default class Server {
                 this.logger?.debug(`${token} is attempting to connect`, 'Server/listen/openConnection');
                 this.sessionManager.add(token, new ClientConnection(session, this.logger));
                 this.logger?.verbose(`New connection handling took ${timer.stop()} ms`, 'Server/listen/openConnection');
-            }
-            else {
+            } else {
                 session.disconnect('--- Closing time ---');
                 setTimeout(connectionCallBack, 50);
             }
