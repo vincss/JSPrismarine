@@ -27,3 +27,6 @@ permissions.json
 report.*.json
 *.cpuprofile
 *.tsbuildinfo
+
+# Minecraft things
+packages/server/worlds/
