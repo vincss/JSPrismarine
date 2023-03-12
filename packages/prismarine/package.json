@@ -7,10 +7,6 @@
 	"type": "module",
 	"funding": "https://github.com/sponsors/JSPrismarine",
 	"homepage": "https://github.com/JSPrismarine/JSPrismarine/tree/master/packages/prismarine",
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/JSPrismarine/JSPrismarine.git"
-	},
 	"scripts": {
 		"build": "tsc --build src"
 	},
@@ -33,6 +29,5 @@
 		"fflate": "0.7.4",
 		"node-fetch": "^3.3.0",
 		"yaml": "^2.0.1"
-	},
-	"gitHead": "d5c024aee5aa3dfd06ed5cde11d9ac39a4c35bb0"
+	}
 }

@@ -9,10 +9,6 @@
     "scripts": {
         "build": "tsc --build src"
     },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/JSPrismarine/JSPrismarine.git"
-    },
     "keywords": [
         "nodejs",
         "raknet"
@@ -27,6 +23,5 @@
     "devDependencies": {
         "pino-pretty": "^9.1.1",
         "typescript": "4.9.5"
-    },
-    "gitHead": "d5c024aee5aa3dfd06ed5cde11d9ac39a4c35bb0"
+    }
 }
