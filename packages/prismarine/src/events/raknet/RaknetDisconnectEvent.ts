@@ -1,5 +1,5 @@
 import Event from '../Event.js';
-import type { InetAddress } from '@jsprismarine/raknet';
+import type { InetAddress } from '@vincss-jsprismarine/raknet';
 
 /**
  * Fired just as a client disconnects from the raknet instance

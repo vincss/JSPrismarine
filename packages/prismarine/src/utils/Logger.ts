@@ -1,6 +1,6 @@
 import { Logger, createLogger, format, transports } from 'winston';
 
-import colorParser from '@jsprismarine/color-parser';
+import colorParser from '@vincss-jsprismarine/color-parser';
 import cwd from './cwd.js';
 import fs from 'node:fs';
 import path from 'node:path';

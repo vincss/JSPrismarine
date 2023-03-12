@@ -1,5 +1,5 @@
 import { BatchPacket, DataPacket } from './Packets.js';
-import { Protocol, RakNetSession } from '@jsprismarine/raknet';
+import { Protocol, RakNetSession } from '@vincss-jsprismarine/raknet';
 
 import { Logger } from '../Prismarine.js';
 

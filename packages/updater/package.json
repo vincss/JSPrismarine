@@ -1,5 +1,5 @@
 {
-    "name": "@jsprismarine/updater",
+    "name": "@vincss-jsprismarine/updater",
     "version": "0.1.0-rc.49",
     "description": "JSPrismarine updater",
     "main": "./dist/Updater.js",
@@ -24,7 +24,7 @@
         "typescript": "4.9.5"
     },
     "dependencies": {
-        "@jsprismarine/prismarine": "^0.1.0-rc.49",
+        "@vincss-jsprismarine/prismarine": "^0.1.0-rc.49",
         "node-fetch": "^3.3.0",
         "semver": "7.3.8"
     },
