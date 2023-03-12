@@ -1,81 +1,32 @@
 name: Release
+
 on:
-    workflow_dispatch:
-        inputs:
-            version:
-                description: "Version (v0.1.0-rc.17)"
-                required: true
-            prerelease:
-                description: "Pre-release?"
-                required: false
+  push:
+    branches:
+      - master
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
-    create-release:
-        runs-on: ubuntu-latest
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js 18.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Create Release Pull Request
+        uses: changesets/action@v1
+        with:
+          # this expects you to have a npm script called version that runs some logic and then calls `changeset version`.
+          version: npm run publish-packages
         env:
-            TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
-            TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
-        steps:
-            - uses: actions/checkout@v3
-              with:
-                  fetch-depth: 0
-            - uses: actions/setup-node@v3
-              with:
-                  node-version: 18
-            - run: npm install
-            - run: npm run build
-
-            - run: npm prune --production
-            - run: npm install -g pkg
-            - run: npm run package
-
-            - name: Changelog
-              uses: scottbrenner/generate-changelog-action@master
-              id: changelog
-              env:
-                  REPO: ${{ github.repository }}
-
-            - name: Create Release
-              id: create_release
-              uses: zendesk/action-create-release@v1
-              env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-              with:
-                  tag_name: ${{ github.event.inputs.version }}
-                  release_name: ${{ github.event.inputs.version }}
-                  body: |
-                      ${{ steps.Changelog.outputs.changelog }}
-                  prerelease: ${{ github.event.inputs.prerelease }}
-
-            - name: Upload Linux Release Asset
-              id: upload-linux-release-asset
-              uses: actions/upload-release-asset@v1
-              env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-              with:
-                  upload_url: ${{ steps.create_release.outputs.upload_url }}
-                  asset_path: builds/monorepo-linux
-                  asset_name: prismarine-linux
-                  asset_content_type: application/bin
-
-            - name: Upload MacOS Release Asset
-              id: upload-macos-release-asset
-              uses: actions/upload-release-asset@v1
-              env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-              with:
-                  upload_url: ${{ steps.create_release.outputs.upload_url }}
-                  asset_path: builds/monorepo-macos
-                  asset_name: prismarine-macos
-                  asset_content_type: application/bin
-
-            - name: Upload Win32 Release Asset
-              id: upload-win32-release-asset
-              uses: actions/upload-release-asset@v1
-              env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-              with:
-                  upload_url: ${{ steps.create_release.outputs.upload_url }}
-                  asset_path: builds/monorepo-win.exe
-                  asset_name: prismarine-win.exe
-                  asset_content_type: application/exe
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
