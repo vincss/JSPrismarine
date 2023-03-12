@@ -1,6 +1,6 @@
 {
     "name": "@vincss/raknet",
-    "version": "0.1.2",
+    "version": "0.1.3",
     "description": "Basic RakNet implementation written in TypeScript",
     "main": "./dist/RakNet.js",
     "types": "./dist/RakNet.d.ts",
