@@ -17,6 +17,9 @@ import UnconnectedPong from './offline/UnconnectedPong.js';
 import ServerSocket from '../ServerSocket.js';
 import BinaryStream from '@jsprismarine/jsbinaryutils';
 
+const ServerName = 'SleepingServer';
+const SecondLine = 'Waiting for his prince...';
+
 export default class OfflineHandler {
     public constructor(private readonly listener: ServerSocket) {}
 
@@ -36,7 +39,7 @@ export default class OfflineHandler {
 
                 const guid = this.listener.getServerGuid();
                 pong.serverGuid = guid;
-                pong.serverName = `MCPE;SleepingServer;560;1.19.51;0;20;${guid};waiting for his prince...;Creative;`;
+                pong.serverName = `MCPE;${ServerName};560;1.19.51;0;20;${guid};${SecondLine};Creative;`;
 
                 this.listener.sendPacket(pong, rinfo);
                 break;
