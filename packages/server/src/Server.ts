@@ -14,17 +14,27 @@ if (process.env.JSP_DIR && !fs.existsSync(path.join(process.cwd(), process.env.J
 const version = process.env.npm_package_version!;
 
 const config = new Config(version);
+config.setMotd(' - dev - ');
+
 const logger = new Logger();
 const updater = new Updater({
     config,
     logger,
     version
 });
+
+const connectionCallBack = async () => {
+    await server.shutdown({ withoutSaving: true });
+};
+
 const server = new Server({
     config,
     logger,
-    version
+    version,
+    connectionCallBack
 });
+const applied = server.getConfig();
+logger.info('aplied', JSON.stringify(applied))
 
 exitHook(async () => {
     await server.shutdown();
@@ -33,9 +43,7 @@ exitHook(async () => {
 await updater.check();
 
 try {
-    await server.bootstrap(config.getServerIp(), config.getServerPort(), async () => {
-        await server.shutdown({ withoutSaving: true });
-    });
+    await server.bootstrap(config.getServerIp(), config.getServerPort());
 } catch (e) {
     logger.error(`Cannot start the server, is it already running on the same port? (${<Error>e})`, 'Prismarine');
     await server.shutdown({ crash: true });

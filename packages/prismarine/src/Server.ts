@@ -52,13 +52,24 @@ export default class Server {
     private readonly permissionManager: PermissionManager;
     private readonly banManager: BanManager;
     private stopping = false;
+    private connectionCallBack?: () => void;
 
     /**
      * @deprecated
      */
     public static instance: Server;
 
-    public constructor({ logger, config, version }: { logger?: LoggerBuilder; config: Config; version: string }) {
+    public constructor({
+        logger,
+        config,
+        version,
+        connectionCallBack
+    }: {
+        logger?: LoggerBuilder;
+        config: Config;
+        version: string;
+        connectionCallBack?: () => void;
+    }) {
         logger?.info(
             `Starting JSPrismarine server version ${version} for Minecraft: Bedrock Edition v${Identifiers.MinecraftVersion} (protocol version ${Identifiers.Protocol})`,
             'Server'
@@ -79,6 +90,7 @@ export default class Server {
         this.chatManager = new ChatManager(this);
         this.permissionManager = new PermissionManager(this);
         this.banManager = new BanManager(this);
+        this.connectionCallBack = connectionCallBack;
 
         Server.instance = this;
     }
@@ -111,8 +123,8 @@ export default class Server {
         await this.onEnable();
     }
 
-    public async bootstrap(serverIp = '0.0.0.0', port = 19132, connectionCallBack?: () => void): Promise<void> {
-        if (!connectionCallBack) {
+    public async bootstrap(serverIp = '0.0.0.0', port = 19132): Promise<void> {
+        if (!this.connectionCallBack) {
             await this.onEnable();
             BlockMappings.initMappings();
             await this.worldManager.onEnable();
@@ -141,14 +153,14 @@ export default class Server {
                 return;
             }
 
-            if (!connectionCallBack) {
+            if (!this.connectionCallBack) {
                 const timer = new Timer();
                 this.logger?.debug(`${token} is attempting to connect`, 'Server/listen/openConnection');
                 this.sessionManager.add(token, new ClientConnection(session, this.logger));
                 this.logger?.verbose(`New connection handling took ${timer.stop()} ms`, 'Server/listen/openConnection');
             } else {
                 session.disconnect('--- Closing time ---');
-                setTimeout(connectionCallBack, 50);
+                setTimeout(this.connectionCallBack, 50);
             }
         });
 
@@ -271,7 +283,7 @@ export default class Server {
             }
         });
 
-        if (!connectionCallBack) {
+        if (!this.connectionCallBack) {
             // TODO: the tick depends on the world
             // TODO: ticks have to be sync... what if a newer update
             // takes less to complete than the one started before?
@@ -323,7 +335,9 @@ export default class Server {
             await this.worldManager.onDisable();
             await this.onDisable();
             this.raknet?.kill(); // this.raknet might be undefined if we kill the server really early
-            process.exit(options?.crash ? 1 : 0);
+            if (!this.connectionCallBack) {
+                process.exit(options?.crash ? 1 : 0);
+            }
         } catch (error) {
             this.logger?.error(error as any, 'Server/kill');
             process.exit(1);
