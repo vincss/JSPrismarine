@@ -1,6 +1,6 @@
 {
 	"name": "@vincss/prismarine",
-	"version": "0.1.0-rc.49",
+	"version": "0.1.0",
 	"description": "Dedicated Minecraft Bedrock Edition server written in TypeScript",
 	"main": "./dist/Prismarine.js",
 	"types": "./dist/Prismarine.d.ts",
@@ -24,11 +24,11 @@
 		"url": "https://github.com/JSPrismarine/JSPrismarine/issues"
 	},
 	"dependencies": {
-		"@vincss/nbt": "^0.1.0-rc.49",
+		"@vincss/nbt": "^0.1.0",
 		"@jsprismarine/jsbinaryutils": "5.4.3",
 		"fflate": "0.7.4",
 		"node-fetch": "^3.3.0",
 		"yaml": "^2.0.1"
 	},
-	"repository":"https://github.com/vincss/jsprismarine.git"
+	"repository": "https://github.com/vincss/jsprismarine.git"
 }

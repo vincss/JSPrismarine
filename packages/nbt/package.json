@@ -1,6 +1,6 @@
 {
     "name": "@vincss/nbt",
-    "version": "0.1.0-rc.49",
+    "version": "0.1.0",
     "description": "Minecraft: Bedrock Edition NBT parser/writer",
     "main": "./dist/NBT.js",
     "types": "./dist/NBT.d.ts",
@@ -22,5 +22,5 @@
     "dependencies": {
         "@jsprismarine/jsbinaryutils": "5.4.3"
     },
-    "repository":"https://github.com/vincss/jsprismarine.git"
+    "repository": "https://github.com/vincss/jsprismarine.git"
 }
