@@ -1,4 +1,4 @@
-import { Config, Logger } from '@vincss-jsprismarine/prismarine';
+import { Config, Logger } from '@vincss/prismarine';
 
 import fetch from 'node-fetch';
 import semver from 'semver';

@@ -1,5 +1,5 @@
 import BinaryStream from '@jsprismarine/jsbinaryutils';
-import { InetAddress } from '@vincss-jsprismarine/raknet';
+import { InetAddress } from '@vincss/raknet';
 import QueryManager from './QueryManager.js';
 import Server from '../Server.js';
 // import esmock from 'esmock';

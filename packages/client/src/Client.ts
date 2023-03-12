@@ -1,11 +1,11 @@
-import { ConnectionPriority, InetAddress, Protocol, RakNetSession } from '@vincss-jsprismarine/raknet';
+import { ConnectionPriority, InetAddress, Protocol, RakNetSession } from '@vincss/raknet';
 import Dgram, { type Socket } from 'dgram';
-import { Protocol as JSPProtocol, Logger } from '@vincss-jsprismarine/prismarine';
+import { Protocol as JSPProtocol, Logger } from '@vincss/prismarine';
 import { clearIntervalAsync, setIntervalAsync } from 'set-interval-async/dynamic';
 
 import Crypto, { randomBytes } from 'crypto';
 import { EventEmitter } from 'events';
-import { RakNetPriority } from '@vincss-jsprismarine/raknet/src/Session.js';
+import { RakNetPriority } from '@vincss/raknet/src/Session.js';
 
 // https://stackoverflow.com/a/1527820/3142553
 const getRandomInt = (min: number, max: number) => {

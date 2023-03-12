@@ -1,6 +1,6 @@
-import { Config, Logger, Server } from '@vincss-jsprismarine/prismarine';
+import { Config, Logger, Server } from '@vincss/prismarine';
 
-import Updater from '@vincss-jsprismarine/updater';
+import Updater from '@vincss/updater';
 import exitHook from 'async-exit-hook';
 import fs from 'node:fs';
 import path from 'node:path';

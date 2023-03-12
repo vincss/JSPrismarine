@@ -1,5 +1,5 @@
 import BinaryStream from '@jsprismarine/jsbinaryutils';
-import type { InetAddress } from '@vincss-jsprismarine/raknet';
+import type { InetAddress } from '@vincss/raknet';
 import PluginFile from '../plugin/PluginFile.js';
 import Server from '../Server.js';
 import git from 'git-rev-sync';

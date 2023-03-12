@@ -1,6 +1,6 @@
 import Event from '../Event.js';
-import type { InetAddress } from '@vincss-jsprismarine/raknet';
-import { Protocol } from '@vincss-jsprismarine/raknet';
+import type { InetAddress } from '@vincss/raknet';
+import { Protocol } from '@vincss/raknet';
 
 export default class RaknetEncapsulatedPacketEvent extends Event {
     private readonly inetAddr: InetAddress;

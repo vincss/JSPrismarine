@@ -1,5 +1,5 @@
 {
-    "name": "@vincss-jsprismarine/monorepo",
+    "name": "@vincss/monorepo",
     "description": "Dedicated Minecraft Bedrock Edition server written in TypeScript",
     "funding": "https://github.com/sponsors/JSPrismarine",
     "workspaces": {
@@ -22,7 +22,7 @@
         "build": "npm-run-all build:*",
         "build:source": "turbo run build",
         "build:docs": "typedoc",
-        "server:build": "turbo run build --filter=@vincss-jsprismarine/server",
+        "server:build": "turbo run build --filter=@vincss/server",
         "package": "pkg package.json --out-path ./builds/",
         "watch:test": "jest --passWithNoTests --watch --detectOpenHandles --runInBand",
         "test": "npm-run-all test:*",
@@ -179,15 +179,15 @@
     "pkg": {
         "scripts": [
             "./packages/server/dist/**/*.js",
-            "./packages/server/node_modules/@vincss-jsprismarine/prismarine/node_modules/leveldown/**/*.js",
-            "./packages/server/node_modules/@vincss-jsprismarine/prismarine/dist/**/*.js"
+            "./packages/server/node_modules/@vincss/prismarine/node_modules/leveldown/**/*.js",
+            "./packages/server/node_modules/@vincss/prismarine/dist/**/*.js"
         ],
         "assets": [
-            "./packages/server/node_modules/@vincss-jsprismarine/prismarine/node_modules/@jsprismarine/bedrock-data/resources/biome_definitions.nbt",
-            "./packages/server/node_modules/@vincss-jsprismarine/prismarine/node_modules/@jsprismarine/bedrock-data/resources/entity_identifiers.nbt",
-            "./packages/server/node_modules/@vincss-jsprismarine/prismarine/node_modules/@jsprismarine/bedrock-data/resources/canonical_block_states.nbt",
-            "./packages/server/node_modules/@vincss-jsprismarine/prismarine/node_modules/@jsprismarine/bedrock-data/resources/r12_to_current_block_map.bin",
-            "./packages/server/node_modules/@vincss-jsprismarine/prismarine/node_modules/@jsprismarine/bedrock-data/block_states.dat",
+            "./packages/server/node_modules/@vincss/prismarine/node_modules/@jsprismarine/bedrock-data/resources/biome_definitions.nbt",
+            "./packages/server/node_modules/@vincss/prismarine/node_modules/@jsprismarine/bedrock-data/resources/entity_identifiers.nbt",
+            "./packages/server/node_modules/@vincss/prismarine/node_modules/@jsprismarine/bedrock-data/resources/canonical_block_states.nbt",
+            "./packages/server/node_modules/@vincss/prismarine/node_modules/@jsprismarine/bedrock-data/resources/r12_to_current_block_map.bin",
+            "./packages/server/node_modules/@vincss/prismarine/node_modules/@jsprismarine/bedrock-data/block_states.dat",
             "./node_modules/@jsprismarine/bedrock-data/resources/biome_definitions.nbt",
             "./node_modules/@jsprismarine/bedrock-data/resources/entity_identifiers.nbt",
             "./node_modules/@jsprismarine/bedrock-data/resources/canonical_block_states.nbt",

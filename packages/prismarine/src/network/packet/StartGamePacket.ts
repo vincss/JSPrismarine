@@ -4,7 +4,7 @@ import Identifiers from '../Identifiers.js';
 import McpeUtil from '../NetworkUtil.js';
 import Vector3 from '../../math/Vector3.js';
 import UUID from '../../utils/UUID.js';
-import { NBTTagCompound, NBTWriter } from '@vincss-jsprismarine/nbt';
+import { NBTTagCompound, NBTWriter } from '@vincss/nbt';
 import BinaryStream from '@jsprismarine/jsbinaryutils';
 
 export default class StartGamePacket extends DataPacket {

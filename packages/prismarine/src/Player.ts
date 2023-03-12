@@ -7,7 +7,7 @@ import Device from './utils/Device.js';
 import FormManager from './form/FormManager.js';
 import Gamemode from './world/Gamemode.js';
 import Human from './entity/Human.js';
-import { InetAddress } from '@vincss-jsprismarine/raknet';
+import { InetAddress } from '@vincss/raknet';
 import MovementType from './network/type/MovementType.js';
 import PlayStatusType from './network/type/PlayStatusType.js';
 import PlayerSession from './network/PlayerSession.js';

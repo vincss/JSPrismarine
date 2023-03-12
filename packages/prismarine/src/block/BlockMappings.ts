@@ -1,4 +1,4 @@
-import { ByteOrder, NBTReader } from '@vincss-jsprismarine/nbt';
+import { ByteOrder, NBTReader } from '@vincss/nbt';
 
 import BedrockData from '@jsprismarine/bedrock-data';
 import BinaryStream from '@jsprismarine/jsbinaryutils';

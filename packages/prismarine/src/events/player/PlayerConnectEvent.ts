@@ -1,5 +1,5 @@
 import Event from '../Event.js';
-import type { InetAddress } from '@vincss-jsprismarine/raknet';
+import type { InetAddress } from '@vincss/raknet';
 import type Player from '../../Player.js';
 
 /**
