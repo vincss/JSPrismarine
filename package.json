@@ -245,10 +245,10 @@
         "yaml": "2.2.1"
     },
     "publishConfig": {
-        "registry": "https://npm.pkg.github.com/vincss/JSPrismarine"
+        "registry": "https://npm.pkg.github.com/vincss/vincss-jsprismarine"
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/vincss/JSPrismarine.git"
+        "url": "git+https://github.com/vincss/vincss-jsprismarine.git"
     }
 }
